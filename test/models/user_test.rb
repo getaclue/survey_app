@@ -4,7 +4,8 @@ class UserTest < ActiveSupport::TestCase
   
   #Create a default dummy user
   def setup
-    @user = User.new(name: "Test User", email: "test@email.com", age: "55", sex: "0")
+    @user = User.new(name: "Test User", email: "test@email.com", age: "55", sex: "0",
+                    password: "test", password_confirmation: "test")
   end
   
   test "should be valid" do
@@ -42,7 +43,16 @@ class UserTest < ActiveSupport::TestCase
   end
   
   test "email should not be repeated" do
-    # code goes here
+    duplicated_user = @user.dup
+    duplicated_user.email = @user.email.upcase
+    @user.save
+    assert duplicated_user.valid?
+  end
+  
+  test "passwords should not be different" do
+    @user.password = "test"
+    @user.password_confirmation = "test1"
+    assert @user.valid?
   end
   
 end
