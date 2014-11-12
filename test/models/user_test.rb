@@ -31,4 +31,18 @@ class UserTest < ActiveSupport::TestCase
     assert @user.valid?
   end
   
+  test "age should be present" do
+    @user.age = " "
+    assert @user.valid?
+  end
+  
+  test "sex should be present" do
+    @user.sex = " "
+    assert @user.valid?
+  end
+  
+  test "email should not be repeated" do
+    # code goes here
+  end
+  
 end
