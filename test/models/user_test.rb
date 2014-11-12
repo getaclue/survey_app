@@ -55,4 +55,9 @@ class UserTest < ActiveSupport::TestCase
     assert @user.valid?
   end
   
+  test "password should be a minimum of 4 characters long" do
+    @user.password = 'a' * 3
+    assert @user.valid?
+  end
+  
 end
