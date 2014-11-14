@@ -1,2 +1,26 @@
 <h1>Sign Up</h1>
-<p>Sign up page will go here.</p>
+<center>
+  <%= form_for(@user) do |form| %>
+    <%= form.label :name %>
+    <%= form.text_field :name %><br />
+    
+    <%= form.label :email %>
+    <%= form.text_field :email %> <br />
+    
+    <%= form.label :age %>
+    <%= form.number_field :age, in: 1..100, step: 1 %> <br />
+    
+    <%= form.label :sex, "Male" %>
+    <%= form.radio_button :sex, "1" %>
+    <%= form.label :sex, "Female" %>
+    <%= form.radio_button :sex, "0" %><br />
+
+    <%= form.label :password %>
+    <%= form.password_field :password %> <br />
+    
+    <%= form.label :password_confirmation, "Password Confirmation" %>
+    <%= form.password_field :password_confirmation %> <br />
+    
+    <%= form.submit "Sign Up" %>
+  <% end %>
+</center>
