@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
-  get 'signup' => 'users#new'
+  # To see all routes:
+  # bundle exec rake routes
+  
+  root 'sessions#new'
+  get 'login'   => 'sessions#new'
+  post 'login'  => 'sessions#create'
+  get 'logout'  => 'sessions#destroy'
+  get 'signup'  => 'users#new'
   resources :users
 
   # The priority is based upon order of creation: first created -> highest priority.
