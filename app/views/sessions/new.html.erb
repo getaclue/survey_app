@@ -1,13 +1,21 @@
-<center>
-  <h1>Login</h1>
   <%= form_for(:session, url: login_path) do |form| %>
-    <%= form.label :email %>
-    <%= form.text_field :email %><br />
-    
-    <%= form.label :password %>
-    <%= form.password_field :password %><br />
-    
-    <%= form.submit "Login Now" %>
+  <fieldset>
+    <legend>Login</legend>
+    <div class="row">
+      <div class="large-12 columns">
+        <%= form.text_field :email, :placeholder => "Email" %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="large-12 columns">
+        <%= form.password_field :password, :placeholder => "Password" %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="large-12 columns">
+        <%= form.submit "Login Now", class: "button expand radius small" %>
+      </div>
+    </div>
+      <p>New user? <%= link_to "Sign Up", signup_path %></p>
+  </fieldset>
   <% end %>
-  <p>New user? <%= link_to "Sign Up", signup_path %></p>
-</center>
