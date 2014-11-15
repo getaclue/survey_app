@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title><%= content_for?(:title) ? yield(:title) : "foundation-rails" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : "Survey-App" %></title>
 
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "vendor/modernizr" %>
@@ -21,7 +21,7 @@
     <section class="top-bar-section">
       <ul class="right">
         <li class="divider"></li>
-        <li><%= link_to "Login", login_path %></li>
+        <li><%= link_to "Sign in", signin_path %></li>
         <li class="divider"></li>
         <li><%= link_to "Sign up", signup_path %></li>
       </ul>
@@ -30,6 +30,12 @@
   <div class="row">
     <div class="small-6 large-centered columns">
       <%= yield %>
+      <% if Rails.env.development? %>
+        <span class="alert label">Development Environment Output:</span>
+        <div class="panel">
+          <%= debug(params) %>
+        </div>
+      <% end %>
     </div>
   </div>
     <%= javascript_include_tag "application" %>

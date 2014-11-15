@@ -1,7 +1,7 @@
 <% if @user.errors.any? %>
-  <div>
-    We've encountered some errors:
-    <ul>
+  <div class="panel callout radius">
+    <div class="alert-box">We've encountered some errors:</div>
+    <ul class="circle">
       <% @user.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>

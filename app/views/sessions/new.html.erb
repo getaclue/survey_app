@@ -1,6 +1,8 @@
-  <%= form_for(:session, url: login_path) do |form| %>
-  <fieldset>
-    <legend>Login</legend>
+  <% provide(:title, "Sign in") %>
+  
+  <h1 class="subheader text-center">Sign in to Survey App</h1>
+  <%= form_for(:session, url: signin_path) do |form| %>
+  <div class="panel">
     <div class="row">
       <div class="large-12 columns">
         <%= form.text_field :email, :placeholder => "Email" %>
@@ -13,9 +15,9 @@
     </div>
     <div class="row">
       <div class="large-12 columns">
-        <%= form.submit "Login Now", class: "button expand radius small" %>
+        <%= form.submit "Sign In", class: "button expand radius small" %>
       </div>
     </div>
-      <p>New user? <%= link_to "Sign Up", signup_path %></p>
-  </fieldset>
+      <p class="text-center"><%= link_to "Create an account", signup_path %></p>
+  </div>
   <% end %>
