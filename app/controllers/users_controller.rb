@@ -1,8 +1,10 @@
 class UsersController < ApplicationController
   # ensure that user is signed in before edit and update actions
-  before_action :signed_in_user, only: [:edit, :update, :index]
+  before_action :signed_in_user, only: [:edit, :update, :index, :destroy]
   # ensure that user sending the request is the signed in user
   before_action :permitted_user, only: [:edit, :update]
+  # ensures that user has admin
+  before_action :admin_user, only: [:destroy]
   
   # Show all users
   def index
@@ -76,6 +78,9 @@ class UsersController < ApplicationController
   
   # Delete a user
   def destroy
+    User.find(params[:id]).destroy
+    flash[:success] = "User deleted"
+    redirect_to users_path
   end
   
   # Helper methods
@@ -102,6 +107,11 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
       # using session helper to check if current user == user
       redirect_to root_url unless current_user?(@user)
+    end
+    
+    # Helper method for before_action Rails method for admin action(s)
+    def admin_user
+      redirect_to root_url unless current_user.admin?
     end
   
 end
