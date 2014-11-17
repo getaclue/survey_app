@@ -1,10 +1,27 @@
 class UsersController < ApplicationController
+  # ensure that user is signed in before edit and update actions
+  before_action :signed_in_user, only: [:edit, :update, :index]
+  # ensure that user sending the request is the signed in user
+  before_action :permitted_user, only: [:edit, :update]
+  
+  # Show all users
+  def index
+    @users = User.all
+  end
   
   # Responds to GET request
   # Purpose - Page to make a new user
   # Named path - new_user_path
   def new
-    @user = User.new
+    if signed_in?
+      # doesn't make sense to make a new account if already signed in
+      # redirect to show action
+      redirect_to current_user
+    else
+      # user not signed in
+      # proceed as normal
+      @user = User.new
+    end
   end
   
   # Responds to GET request
@@ -35,6 +52,28 @@ class UsersController < ApplicationController
     end
   end
   
+  # Editing a user action
+  def edit
+    # Removed User.find because before_action takes care of it
+    # @user = User.find(params[:id])
+  end
+  
+  # updating a user action
+  def update
+    # Removed User.find because before_action takes care of it
+    # @user = User.find(params[:id])
+    if @user.update_attributes(accepted_user_params)
+      # update was successful
+      # flash message and redirect to show action
+      flash[:success] = "Settings updated"
+      redirect_to @user
+    else
+      # update was unsuccessful
+      # show the edit action again
+      render 'edit'
+    end
+  end
+  
   # Helper methods
   private
   
@@ -42,6 +81,23 @@ class UsersController < ApplicationController
     def accepted_user_params
       params.require(:user).permit(:name, :email, :age, :sex, :password, 
                                     :password_confirmation)
+    end
+    
+    # Helped method for before_action Rails method for edit and update actions
+    def signed_in_user
+      # if not signed in then flash a warning and redirect to sign in page
+      unless signed_in?
+        store_URL_trying_to_be_accessed
+        flash[:alert] = "Please sign in to access this page."
+        redirect_to signin_path
+      end
+    end
+    
+    # Helper method for before_action Rails method for edit and update actions
+    def permitted_user
+      @user = User.find(params[:id])
+      # using session helper to check if current user == user
+      redirect_to root_url unless current_user?(@user)
     end
   
 end

@@ -22,4 +22,10 @@ module SessionsHelper
     session.delete(:user_id)
     @current_user = nil
   end
+  
+  # checks if passed user object is the current user object
+  def current_user?(user)
+    user == current_user
+  end
+  
 end

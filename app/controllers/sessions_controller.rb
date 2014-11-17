@@ -16,7 +16,7 @@ class SessionsController < ApplicationController
       # (2) user password was correct
       # redirect to user.show
       sign_in user
-      redirect_to user
+      conditional_redirect user
     else
       # unsuccessful session
       # either user was not found or password was not correct
@@ -32,4 +32,17 @@ class SessionsController < ApplicationController
     sign_out if signed_in?
     redirect_to root_url
   end
+  
+  # Redirect to a default location OR
+  # Redirect to URL trying to be accessed
+  def conditional_redirect(default)
+    redirect_to(session[:URL_trying_to_be_accessed] || default)
+    session.delete(:URL_trying_to_be_accessed)
+  end
+  
+  # Store URL trying to be accessed
+  def store_URL_trying_to_be_accessed
+    session[:URL_trying_to_be_accessed] = request.url if request.get?
+  end
+  
 end
