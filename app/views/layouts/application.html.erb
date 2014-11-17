@@ -42,6 +42,13 @@
   </nav>
   <div class="row">
     <div class="small-6 large-centered columns">
+      
+      <% flash.each do |message_type, message| %>
+        <div data-alert class="alert-box <%= message_type %>"><%= message %>
+        <a href="#" class="close">&times;</a>
+        </div>
+      <% end %>
+      
       <%= yield %>
       <% if Rails.env.development? %>
         <span class="alert label">Development Environment Output:</span>

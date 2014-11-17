@@ -21,7 +21,7 @@ class SessionsController < ApplicationController
       # unsuccessful session
       # either user was not found or password was not correct
       # redirect to signin page
-      flash.now[:danger] = 'Invalid email and/or password'
+      flash.now[:alert] = 'Invalid email and/or password'
       render 'new'
     end
   end
