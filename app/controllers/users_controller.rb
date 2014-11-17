@@ -21,9 +21,15 @@ class UsersController < ApplicationController
     @user = User.new(accepted_user_params)
     if @user.save
       # Successfull Sign Up
+    
+      # Store successfull signup as a current user
       # Redirect to showing user profile
+      sign_in(@user)
       redirect_to user_path(@user)
     else
+      # Unsuccessfull Sign Up
+      
+      # Redirect to signup page
       render 'new'
     end
   end

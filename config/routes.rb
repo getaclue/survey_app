@@ -3,10 +3,10 @@ Rails.application.routes.draw do
   # bundle exec rake routes
   
   root 'sessions#new'
-  get   'signin'    => 'sessions#new'
-  post  'signin'    => 'sessions#create'
-  get   'signout'   => 'sessions#destroy'
-  get   'signup'    => 'users#new'
+  get   'signin'      => 'sessions#new'
+  post  'signin'      => 'sessions#create'
+  delete   'signout'  => 'sessions#destroy'
+  get   'signup'      => 'users#new'
   resources :users
 
   # The priority is based upon order of creation: first created -> highest priority.

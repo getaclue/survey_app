@@ -20,10 +20,23 @@
     </ul>
     <section class="top-bar-section">
       <ul class="right">
-        <li class="divider"></li>
-        <li><%= link_to "Sign in", signin_path %></li>
-        <li class="divider"></li>
-        <li><%= link_to "Sign up", signup_path %></li>
+        <% if signed_in? %>
+          <!-- Start menu item shown only if signed in -->
+            <li class="divider"></li>
+            <li><%= link_to "Profile", user_path(current_user) %></li>
+            <li class="divider"></li>
+            <li><%= link_to "Friends", '#' %></li>
+            <li class="divider"></li>
+            <li><%= link_to "Settings", '#' %></li>
+            <li class="divider"></li>
+            <li><%= link_to "Sign out", signout_path, method: :delete %></li>
+          <!-- END menu item shown only if signed in -->
+          <% else %>
+            <li class="divider"></li>
+            <li><%= link_to "Sign in", signin_path %></li>
+            <li class="divider"></li>
+            <li><%= link_to "Sign up", signup_path %></li>
+        <% end %>
       </ul>
     </section>
   </nav>
