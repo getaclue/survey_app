@@ -1,2 +1,7 @@
 <% provide(:title, 'Friends') %>
-<h1>See all Friends!</h1>
+<h1>See all Users!</h1>
+<ul>
+  <% @users.each do |user| %>
+    <%= render user %>
+  <% end %>
+</ul>

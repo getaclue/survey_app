@@ -28,4 +28,16 @@ module SessionsHelper
     user == current_user
   end
   
+  # Redirect to a default location OR
+  # Redirect to URL trying to be accessed
+  def conditional_redirect(default)
+    redirect_to(session[:URL_trying_to_be_accessed] || default)
+    session.delete(:URL_trying_to_be_accessed)
+  end
+  
+  # Store URL trying to be accessed
+  def store_URL_trying_to_be_accessed
+      session[:URL_trying_to_be_accessed] = request.url if request.get?
+  end
+  
 end

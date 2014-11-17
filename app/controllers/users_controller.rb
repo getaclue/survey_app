@@ -74,6 +74,10 @@ class UsersController < ApplicationController
     end
   end
   
+  # Delete a user
+  def destroy
+  end
+  
   # Helper methods
   private
   
