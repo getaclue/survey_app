@@ -1,6 +1,8 @@
 <li>
   <%= link_to user.name, user %> [<%= user.email %>]
   <% if current_user.admin? && !current_user?(user)%>
+    <% # problem with doing delete this way -- Javascript disabled browsers wont accept this %>
+    <% # if we need to fake it -- need to use a form with a post request %>
     [<%= link_to "Delete User", user_path(user), method: :delete,
                                 data: {confirm: "Are you sure?"}%>]
   <% end %>
