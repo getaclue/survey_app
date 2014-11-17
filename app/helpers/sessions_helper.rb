@@ -20,7 +20,6 @@ module SessionsHelper
   # remove pointer to current_user
   def sign_out
     session.delete(:user_id)
-    reset_session
     @current_user = nil
   end
 end

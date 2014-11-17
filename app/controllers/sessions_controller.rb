@@ -28,7 +28,8 @@ class SessionsController < ApplicationController
   
   # Destroys the current login session
   def destroy
-    sign_out
+    # let the user signout only if the user is signed in
+    sign_out if signed_in?
     redirect_to root_url
   end
 end
