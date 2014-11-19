@@ -29,8 +29,10 @@ class UsersController < ApplicationController
   # Responds to GET request
   # Purpose - Page to show user
   # Named path - user_path(user)
+  # user.surveys = returns a collection of surveys
   def show
     @user = User.find(params[:id])
+    @surveys = @user.surveys
   end
   
   # Responds to POST request
@@ -90,16 +92,6 @@ class UsersController < ApplicationController
     def accepted_user_params
       params.require(:user).permit(:name, :email, :age, :sex, :password, 
                                     :password_confirmation)
-    end
-    
-    # Helped method for before_action Rails method for edit and update actions
-    def signed_in_user
-      # if not signed in then flash a warning and redirect to sign in page
-      unless signed_in?
-        store_URL_trying_to_be_accessed
-        flash[:alert] = "Please sign in to access this page."
-        redirect_to signin_path
-      end
     end
     
     # Helper method for before_action Rails method for edit and update actions

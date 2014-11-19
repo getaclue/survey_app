@@ -2,6 +2,10 @@ class User < ActiveRecord::Base
   # ensure email is lower cased
   before_save { self.email = email.downcase }
   
+  # one to many association to surveys
+  # destroy surveys upon deletion of user
+  has_many :surveys, dependent: :destroy
+  
   # confirms the email format
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   

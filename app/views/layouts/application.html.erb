@@ -12,6 +12,7 @@
   </head>
 
   <body>
+    
   <nav class="top-bar">
     <ul class="title-area">
       <li class="name">
@@ -40,23 +41,29 @@
       </ul>
     </section>
   </nav>
+  
   <div class="row">
-    <div class="small-6 large-centered columns">
-      
-      <% flash.each do |message_type, message| %>
-        <div data-alert class="alert-box <%= message_type %>"><%= message %>
-        <a href="#" class="close">&times;</a>
-        </div>
+      <div class="small-12 columns">
+        <% flash.each do |message_type, message| %>
+        <div data-alert class="alert-box <%= message_type %>">
+              <%= message %>
+              <a href="#" class="close">&times;</a>
+            </div>
+          <% end %>
+          <!-- Main panel -->
+          <p></p>
+          <%= yield %>
+      </div>
+
+  <div class="row">
+    <% if Rails.env.development? %>
+          <span class="alert label">
+            Development Environment Output:
+          </span>
+          <div class="panel">
+            <%= debug(params) %>
+          </div>
       <% end %>
-      
-      <%= yield %>
-      <% if Rails.env.development? %>
-        <span class="alert label">Development Environment Output:</span>
-        <div class="panel">
-          <%= debug(params) %>
-        </div>
-      <% end %>
-    </div>
   </div>
     <%= javascript_include_tag "application" %>
   </body>

@@ -1,8 +1,25 @@
-<% if current_user?(@user) %>
-    Hello <%= @user.name %>! <br />
-  <% else %>
-    <%= @user.name %><br />
-<% end %>
-Your email address is: <%= @user.email %> <br />
-Your age: <%= @user.age %> <br />
-Your sex: <%= @user.sex %> <br />
+<div class="row">
+  <div class="small-5 columns">
+    <ul class="no-bullet">
+      <% if current_user?(@user) %>
+          <li>Hello <span class="secondary label"><%= @user.name %></span></li>
+        <% else %>
+          <li><span class="secondary label"><%= @user.name %></span></li>
+      <% end %>
+      <li><%= @user.email %></li>
+      <li>Age: <%= @user.age %></li>
+      <li>Gender: <%= @user.sex %></li>
+    </ul>
+  </div>
+  <div class="small-7 columns">
+    <% if @user.surveys.any? %>
+        <ol>
+          <% @surveys.each do |survey| %>
+            <%= survey.title %>
+          <% end %>
+        </ol>
+      <% else %>
+        <h3>Sorry, you don't have any surveys.</h3>
+    <% end %>
+  </div>
+</div>

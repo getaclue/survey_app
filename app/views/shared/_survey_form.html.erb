@@ -1,0 +1,12 @@
+<%= form_for(@survey) do |form| %>
+  <% #render 'shared/error_messages', object: form.object %>
+  <div class="row">
+      <div class="large-12 columns">
+        <%= form.label :title, "Create a new survey" %>
+        <%= form.text_field :title, placeholder: "Survey title" %>
+      </div>
+      <div class="large-12 center columns">
+        <%= form.submit "Create Survey", class: "button small expand" %>
+      </div>
+  </div>
+<% end %>
