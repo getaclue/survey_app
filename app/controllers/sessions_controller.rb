@@ -16,7 +16,7 @@ class SessionsController < ApplicationController
       # (2) user password was correct
       # redirect to user.show
       sign_in user
-      conditional_redirect user
+      conditional_redirect root_url
     else
       # unsuccessful session
       # either user was not found or password was not correct

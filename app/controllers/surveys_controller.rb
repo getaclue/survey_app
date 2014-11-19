@@ -5,10 +5,10 @@ class SurveysController < ApplicationController
   
   # only actions allowed = create and destroy survey
   def create
-    @survey = current_user.survey.build(survey_parameters)
+    @survey = current_user.surveys.build(survey_parameters)
     if @survey.save
       # survey has been successfully saved
-      flash[:sucess] = "Survey Created!"
+      flash[:success] = "Survey Created!"
       redirect_to root_url
     else
       # change this later
@@ -18,6 +18,9 @@ class SurveysController < ApplicationController
   end
   
   def destroy
+    current_user.surveys.find_by(id: params[:id]).destroy
+    flash[:success] = "Survey deleted!"
+    redirect_to current_user
   end
   
   private

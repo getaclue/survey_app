@@ -15,7 +15,9 @@
     <% if @user.surveys.any? %>
         <ol>
           <% @surveys.each do |survey| %>
-            <%= survey.title %>
+            <li><%= survey.title %> [<%= link_to "Delete Survey", survey_path(survey), 
+                                    method: :delete,  
+                                    data: {confirm: "Are you sure?"} %>]</li>
           <% end %>
         </ol>
       <% else %>

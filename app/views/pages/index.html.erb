@@ -1,20 +1,20 @@
-<% provide(:title, "Welcome to Survey App!") %>
-
 <% if signed_in? %>
+
+  <% provide(:title, "Hello #{current_user.name}, welcome back to survey-app!") %>
   
     <div class="small-3 columns">
       <%= render 'shared/user_info' %>
     </div>
     <div class="small-9 columns">
-        <% flash.each do |message_type, message| %>
-        <div data-alert class="alert-box <%= message_type %>">
-              <%= message %>
-              <a href="#" class="close">&times;</a>
-            </div>
-          <% end %>
-          <%= render 'shared/survey_form' %>
-      </div>
+      <%= render 'shared/survey_form' %>
+    </div>
   </div>
   <% else %>
-    <h1> Welcome to the app! </h1>
+  
+  <% provide(:title, "Welcome to Survey App! Sign up now!") %>
+  
+  <div class="text-center panel">
+     <h1>Welcome to Survey App!</h1>
+      <%= link_to "Sign in", signin_path, class: "button" %>
+  </div>
 <% end %>
