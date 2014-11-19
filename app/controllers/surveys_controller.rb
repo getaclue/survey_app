@@ -9,7 +9,7 @@ class SurveysController < ApplicationController
     if @survey.save
       # survey has been successfully saved
       flash[:success] = "Survey Created!"
-      redirect_to root_url
+      redirect_to current_user
     else
       # change this later
       # need a root location

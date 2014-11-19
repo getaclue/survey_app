@@ -15,13 +15,21 @@
     <% if @user.surveys.any? %>
         <ol>
           <% @surveys.each do |survey| %>
-            <li><%= survey.title %> [<%= link_to "Delete Survey", survey_path(survey), 
+            <li>
+              <%= survey.title %>
+                <% if current_user?(@user) %>
+                  [<%= link_to "Delete Survey", survey_path(survey), 
                                     method: :delete,  
-                                    data: {confirm: "Are you sure?"} %>]</li>
+                                    data: {confirm: "Are you sure?"} %>]
+                <% end %>
+            </li>
           <% end %>
         </ol>
       <% else %>
         <h3>Sorry, <%= @user.name %> doesn't have any surveys.</h3>
+    <% end %>
+    <% if current_user?(@user) %>
+        <%= link_to "Create a new survey", root_url, class: "button" %>
     <% end %>
   </div>
 </div>

@@ -47,7 +47,7 @@ class UsersController < ApplicationController
       # Redirect to showing user profile
       sign_in(@user)
       flash[:success] = "Welcome #{@user.name} to Survey App!"
-      redirect_to user_path(@user)
+      redirect_to root_url
     else
       # Unsuccessfull Sign Up
       
