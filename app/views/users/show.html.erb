@@ -13,10 +13,17 @@
   </div>
   <div class="small-7 columns">
     <% if @user.surveys.any? %>
+    <h3>Surveys by <%= @user.name %>:</h3>
         <ol>
           <% @surveys.each do |survey| %>
             <li>
-              <%= survey.title %>
+              <% if current_user?(@user) %>
+                <% # if the user is the correct user, allow them to see the link %>
+                <%= link_to survey.title, survey %>
+              <% else  %>
+                <% # otherwise, only show the title %>
+                <%= survey.title %>
+              <% end %>
                 <% if current_user?(@user) %>
                   [<%= link_to "Delete Survey", survey_path(survey), 
                                     method: :delete,  

@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   delete   'signout'  => 'sessions#destroy'
   get   'signup'      => 'users#new'
   resources :users
-  resources :surveys,  only: [:create, :destroy]
+  resources :surveys,  only: [:create, :destroy, :show]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
