@@ -6,6 +6,9 @@ class SurveysController < ApplicationController
   # show contents of a survey
   def show
     @survey = current_user.surveys.find_by(id: params[:id])
+    @questions = @survey.questions
+    @newquestion = @survey.questions.build
+    # @answers = @questions.answers
     # redirect to root if the survey doesn't exist
     if @survey.nil?
       redirect_to root_url
@@ -27,6 +30,9 @@ class SurveysController < ApplicationController
   def create
     @survey = current_user.surveys.build(survey_parameters)
     if @survey.save
+      # create an empty question automatically
+      @question = @survey.questions.build(content: "Create your question...")
+      @question.save
       # survey has been successfully saved
       flash[:success] = "Survey Created!"
       redirect_to current_user
