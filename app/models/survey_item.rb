@@ -1,8 +1,13 @@
 class SurveyItem < ActiveRecord::Base
-  # belongs to a survey
+  ##############################################
+  # Association to survey
+  ##############################################
   belongs_to :survey
   
-  # validates presence of survey_id and content
-  validates :survey_id, presence: true
-  validates :content, presence: true
+  ##############################################
+  # Association to self?
+  ##############################################
+  has_many :answers, class_name: "SurveyItem",
+                      foreign_key: "question_id"
+  belongs_to :question, class_name: "SurveyItem"
 end
