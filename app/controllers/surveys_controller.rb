@@ -7,6 +7,7 @@ class SurveysController < ApplicationController
   def show
     @survey = current_user.surveys.find_by(id: params[:id])
     @questions = @survey.questions
+    @newquestion = @survey.questions.build
     # @answers = @questions.answers
     # redirect to root if the survey doesn't exist
     if @survey.nil?
