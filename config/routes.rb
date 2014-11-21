@@ -2,13 +2,20 @@ Rails.application.routes.draw do
   # To see all routes:
   # bundle exec rake routes
   
+  # main content
   root 'pages#index'
   get   'signin'      => 'sessions#new'
   post  'signin'      => 'sessions#create'
   delete   'signout'  => 'sessions#destroy'
   get   'signup'      => 'users#new'
+  
+  # user resources
   resources :users
-  resources :surveys,  only: [:create, :destroy, :show, :update]
+  
+  # survey resources
+  resources :surveys, only: [:create, :destroy, :show, :update] do
+    resources :questions, only: [:create, :destroy, :update]
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

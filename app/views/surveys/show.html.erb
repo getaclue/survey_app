@@ -1,26 +1,25 @@
 <% # AREA FOR EDITING A PARTICULAR SURVEY %>
 <div class="text-center panel">
-    <% # idea for the future: make the survey title into a form %>
-    <% 
-      # Allow the user to edit the title if needed and submit the change via
-      # update method. Add a save title button or something similar.
-      # Similarly, display the questions beneath via a form.
-       %>
-      <% # SHOW SURVEY TITLE %>
-      <%= form_for(@survey) do |form| %>
-      <div class="row">
-        <div class="large-12 columns">
-          <div class="row collapse">
-            <div class="small-10 columns">
-              <%= form.text_field :title %>
-            </div>
-            <div class="small-2 columns">
-              <%= form.submit "Edit Title", class: "button postfix" %>
+        <% 
+          # Allow the user to edit the title if needed and submit the change via
+          # update method. Add a save title button or something similar.
+          # Similarly, display the questions beneath via a form.
+           %>
+          <% # SHOW SURVEY TITLE %>
+          <%= form_for(@survey) do |form| %>
+          <div class="row">
+            <div class="large-12 columns">
+              <div class="row collapse">
+                <div class="small-10 columns">
+                  <%= form.text_field :title %>
+                </div>
+                <div class="small-2 columns">
+                  <%= form.submit "Edit Title", class: "button postfix" %>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-      <% end %>
+          <% end %>
           <% # SHOW ANSWERS %>
           <%= link_to "Make new survey", root_url, class: "button" %>
 </div>

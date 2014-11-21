@@ -1,0 +1,12 @@
+<%= form_for(@question) do |form| %>
+  <% #render 'shared/error_messages', object: form.object %>
+  <div class="row">
+      <div class="large-12 columns">
+        <%= form.label :content, "" %>
+        <%= form.text_field :content, placeholder: "Question..." %>
+      </div>
+      <div class="large-12 center columns">
+        <%= form.submit "Add Question", class: "button small expand" %>
+      </div>
+  </div>
+<% end %>

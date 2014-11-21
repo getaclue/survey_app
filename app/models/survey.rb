@@ -1,6 +1,10 @@
 class Survey < ActiveRecord::Base
-  # association
+  # association to user
   belongs_to :user
+  
+  # association to questions
+  # depete questions if survey is deleted
+  has_many :questions, dependent: :destroy
   
   # validates presence of user_id and title
   validates :user_id, presence: true
