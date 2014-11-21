@@ -29,6 +29,9 @@ class SurveysController < ApplicationController
   def create
     @survey = current_user.surveys.build(survey_parameters)
     if @survey.save
+      # create an empty question automatically
+      @question = @survey.questions.build(content: "Create your question...")
+      @question.save
       # survey has been successfully saved
       flash[:success] = "Survey Created!"
       redirect_to current_user

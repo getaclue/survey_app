@@ -5,6 +5,7 @@ class Survey < ActiveRecord::Base
   # association to survey_items
   # delete survey_items if survey is deleted
   has_many :questions, class_name: "SurveyItem", dependent: :destroy
+  accepts_nested_attributes_for :questions
   
   # validates presence of user_id and title
   validates :user_id, presence: true

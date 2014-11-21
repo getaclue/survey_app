@@ -6,40 +6,39 @@
           # Similarly, display the questions beneath via a form.
            %>
           <% # SHOW SURVEY TITLE %>
-          <%= form_for(@survey) do |form| %>
+          <%= form_for(@survey) do |survey_form| %>
           <div class="row">
             <div class="large-12 columns">
               <div class="row collapse">
                 <div class="small-10 columns">
-                  <%= form.text_field :title %>
+                  <%= survey_form.text_field :title %>
                 </div>
                 <div class="small-2 columns">
-                  <%= form.submit "Edit Title", class: "button postfix" %>
+                  <%= survey_form.submit "Edit Title", class: "button postfix" %>
                 </div>
               </div>
             </div>
           </div>
-          <% end %>
-          <% ###################### %>
-          <% # SHOW Survey Question %>
-          <% ###################### %>
-          <% if @questions.any? %>
-              <%= form_for(@questions) do |form| %>
-              <div class="row">
-                <div class="large-12 columns">
-                  <div class="row collapse">
-                    <div class="small-10 columns">
-                      <%= form.text_field :title %>
-                    </div>
-                    <div class="small-2 columns">
-                      <%= form.submit "Edit Title", class: "button postfix" %>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <% end %>
-          <% else %>
-              <%= link_to "Add a Question", '#', class: "button" %>
+                    <% ###################### %>
+                    <% # SHOW Survey Question %>
+                    <% ###################### %>
+                    <% if @questions.any? %>
+                        <%= survey_form.fields_for :questions do |question_form| %>
+                        <div class="row">
+                          <div class="large-12 columns">
+                            <div class="row collapse">
+                              <div class="small-10 columns">
+                                <%= question_form.text_field :content %>
+                              </div>
+                              <div class="small-2 columns">
+                                <%= link_to "Edit Title" %>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <% end %>
+                    <% else %>
+                    <% end %>
           <% end %>
           <% # SHOW ANSWER %>
           <p>
