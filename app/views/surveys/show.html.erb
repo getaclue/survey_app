@@ -20,8 +20,29 @@
             </div>
           </div>
           <% end %>
-          <% # SHOW SurveyItems %>
-            <%= link_to "Add Question", '#', class: "button" %>
+          <% ###################### %>
+          <% # SHOW Survey Question %>
+          <% ###################### %>
+          <% if @questions.any? %>
+              <%= form_for(@questions) do |form| %>
+              <div class="row">
+                <div class="large-12 columns">
+                  <div class="row collapse">
+                    <div class="small-10 columns">
+                      <%= form.text_field :title %>
+                    </div>
+                    <div class="small-2 columns">
+                      <%= form.submit "Edit Title", class: "button postfix" %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <% end %>
+          <% else %>
+              <%= link_to "Add a Question", '#', class: "button" %>
+          <% end %>
+          <% # SHOW ANSWER %>
+          <p>
             <%= link_to "Add Answer", '#', class: "button" %>
           <p>
           <%= link_to "Make new survey", root_url, class: "button" %>

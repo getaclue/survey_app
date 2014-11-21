@@ -3,12 +3,15 @@ class SurveyItem < ActiveRecord::Base
   # Association to survey
   ##############################################
   belongs_to :survey
+  # validation
+  validates :survey_id, presence: true
   
   ##############################################
-  # Association to self? Attempt #1 -- failed
+  # Association to self?
   ##############################################
   has_many :answers, class_name: "SurveyItem",
-                      foreign_key: "question_id"
+                      foreign_key: "question_id",
+                      dependent: :destroy
   belongs_to :question, class_name: "SurveyItem"
   
   ##############################################
