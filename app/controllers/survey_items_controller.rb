@@ -3,8 +3,12 @@ class SurveyItemsController < ApplicationController
   
   def new
     # make a new question only
-    @question = @survey.questions.build(content: "Test", question: "true")
-    if @question.save
+    @newquestion = SurveyItem.new(content: "Testing the addition...", 
+                                survey_id: "#{@survey.id}",
+                                question:  false)
+    @newquestion.toggle(:question)
+    if @survey.questions << @newquestion
+      flash[:success] = "Added a new question"
       redirect_to @survey
     end
   end
