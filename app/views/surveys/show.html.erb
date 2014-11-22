@@ -46,7 +46,7 @@
           </div>
           <% end %>
           
-          <%# render 'survey_items/new', @makenewquestion %>
+          <%= render 'survey_items/new', object: @makenewquestion %>
+          
           <%= link_to "Add a question", new_survey_question_path(survey_id: @survey.id), class: "button" %>
-          <%# link_to "Add a question", survey_question_path(survey_id: @survey.id), method: :post, class: "button" %>
         

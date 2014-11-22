@@ -19,11 +19,12 @@ class SurveyItemsController < ApplicationController
   end
   
   def create
-   @surveyitem = @survey.questions.build(content: "Blank test.", question: "true")
-   if @surveyitem.save
-     flash[:success] = "Added a question."
-     redirect_to @survey
-   end
+    @newquestion = SurveyItem.new(create_new_survey_item_parameters)
+    @newquestion.toggle(:question)
+    if @survey.questions << @newquestion
+      flash[:success] = "Added a new question"
+      redirect_to @survey
+    end
   end
   
   def update
@@ -37,6 +38,9 @@ class SurveyItemsController < ApplicationController
     # def survey_items_parameters
     #   params.require(:survey).permit(:title, questions_attributes: [:id, :content])
     # end
+    def create_new_survey_item_parameters
+      params.require(:survey_item).permit(:content)
+    end
     
     def parent_survey
         @survey = current_user.surveys.find(params[:survey_id])
