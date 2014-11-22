@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141121164039) do
+ActiveRecord::Schema.define(version: 20141122173321) do
 
   create_table "survey_items", force: true do |t|
     t.text     "content"

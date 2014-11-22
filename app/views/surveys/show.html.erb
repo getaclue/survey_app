@@ -5,27 +5,34 @@
           # update method. Add a save title button or something similar.
           # Similarly, display the questions beneath via a form.
            %>
-                      <% # SHOW SURVEY TITLE %>
-                      <%= form_for(@survey) do |survey_form| %>
-                      <div class="row">
-                        <div class="large-12 columns">
-                          <div class="row collapse">
-                            <div class="small-10 columns">
-                              <%= survey_form.text_field :title %>
-                            </div>
-                            <div class="small-2 columns">
-                              <%= survey_form.submit "Edit Title", class: "button postfix" %>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    <% ###################### %>
-                    <% # Add a question %>
-                    <% ###################### %>
+          <% # SHOW SURVEY TITLE %>
+          <%= form_for(@survey) do |survey_form| %>
+          <div class="row">
+            <div class="large-12 columns">
+              <div class="row collapse">
+                <div class="small-10 columns">
+                  <%= survey_form.text_field :title %>
+                </div>
+                <div class="small-2 columns">
+                  <%= survey_form.submit "Edit Title", class: "button postfix" %>
+                </div>
+              </div>
+            </div>
+            </div>
           <% end %>
+          
+          <% @questions.each do |question| %>
+            <ul>
+              <li>
+                <%= question.id %>
+                <%= question.content %> [<%= link_to "Edit", survey_question_path(@survey.id, question.id) %>]
+              </li>
+            </ul>
+          <% end %>
+          
           <% # SHOW ANSWER %>
           <p>
-            <%= link_to "Add Answer", survey_questions(@survey), method: :post, class: "button" %>
+            <%= link_to "Add Answer", "#", class: "button" %>
           <p>
           <%= link_to "Make new survey", root_url, class: "button" %>
           </p>

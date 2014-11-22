@@ -15,7 +15,9 @@ Rails.application.routes.draw do
   # survey resources
   resources :surveys, only: [:create, :destroy, :show, :update] do
     #resources :survey_items, only: [:create, :destroy, :update]
-    resources :questions, controller: 'survey_items'
+    resources :questions, controller: 'survey_items' do
+      resources :answers, controller: 'survey_items', only: [:create, :destroy, :update]
+    end
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

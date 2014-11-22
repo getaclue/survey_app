@@ -1,6 +1,11 @@
 class SurveyItemsController < ApplicationController
   before_filter :parent_survey
   
+  def show
+    @question = @survey.questions.find(params[:id])
+    @answers = @question.answers
+  end
+  
   def create
    @surveyitem = @survey.questions.build(params[:questions])
    if @surveyitem.save
