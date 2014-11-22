@@ -2,7 +2,7 @@ class SurveyItemsController < ApplicationController
   before_filter :parent_survey
   
   def new
-    # make a new question only
+    # make a answer question only
     @newquestion = SurveyItem.new(content: "Testing the addition...", 
                                 survey_id: "#{@survey.id}",
                                 question:  false)
@@ -15,10 +15,12 @@ class SurveyItemsController < ApplicationController
   
   def show
     @question = @survey.questions.find(params[:id])
+    @newanswer = SurveyItem.new(content: ".... fill in ....")
     @answers = @question.answers
   end
   
   def create
+    # create a new survey item
     @newquestion = SurveyItem.new(create_new_survey_item_parameters)
     @newquestion.toggle(:question)
     if @survey.questions << @newquestion
@@ -35,9 +37,6 @@ class SurveyItemsController < ApplicationController
   end
   
   private
-    # def survey_items_parameters
-    #   params.require(:survey).permit(:title, questions_attributes: [:id, :content])
-    # end
     def create_new_survey_item_parameters
       params.require(:survey_item).permit(:content)
     end

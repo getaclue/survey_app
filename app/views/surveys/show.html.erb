@@ -1,11 +1,8 @@
 <% # AREA FOR EDITING A PARTICULAR SURVEY %>
-  <div class="text-center panel">
-        <% 
-          # Allow the user to edit the title if needed and submit the change via
-          # update method. Add a save title button or something similar.
-          # Similarly, display the questions beneath via a form.
-           %>
-          <% # SHOW SURVEY TITLE %>
+          <% ################################################################ %>
+          <% # Start Edit the survey title %>
+          <% ################################################################ %>
+          <div class="text-center panel">
           <%= form_for(@survey) do |survey_form| %>
           <div class="row">
             <div class="large-12 columns">
@@ -14,26 +11,26 @@
                   <%= survey_form.text_field :title %>
                 </div>
                 <div class="small-2 columns">
-                  <%= survey_form.submit "Edit Title", class: "button postfix" %>
+                  <%= survey_form.submit "Edit Survey Title", class: "button postfix" %>
                 </div>
               </div>
             </div>
             </div>
           <% end %>
-          
-          <% # Add a question %>
-                    <% # link_to "Add Answer", "#", class: "button" %>
-          <% # GOES HERE %>
-          
           <%= link_to "Make new survey", root_url, class: "button" %>
           <%= link_to "Activate survey", '#', class: "button" %>
-   </div>
-
+          </div>
+          <% ################################################################ %>
+          <% # End Edit the survey title %>
+          <% ################################################################ %>
+          <% ################################################################ %>
+          <% # Start display survey questions %>
+          <% ################################################################ %>
           <% @questions.each do |question| %>
           <div class="panel">
             <ul>
               <li>
-                <%= question.content %> [<%= link_to "Edit", survey_question_path(@survey.id, question.id) %>]
+                <%= question.content %> [<%= link_to "Edit Question", survey_question_path(@survey.id, question.id) %>]
                 <% if question.answers.any? %>
                   <ul>
                   <% @answers = question.answers %>
@@ -45,8 +42,14 @@
             </ul>
           </div>
           <% end %>
-          
+          <% ################################################################ %>
+          <% # End display survey questions %>
+          <% ################################################################ %>
+          <% ################################################################ %>
+          <% # Stat add a question %>
+          <% ################################################################ %>
           <%= render 'survey_items/new', object: @makenewquestion %>
-          
-          <%= link_to "Add a question", new_survey_question_path(survey_id: @survey.id), class: "button" %>
+          <% ################################################################ %>
+          <% # End Add a question %>
+          <% ################################################################ %>
         
