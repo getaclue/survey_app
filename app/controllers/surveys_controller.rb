@@ -16,8 +16,7 @@ class SurveysController < ApplicationController
     ##########################################################
     @questions = @survey.questions.where("question = ?", true)
     # makes a temp survey question
-    # @makenewquestion = SurveyItem.new(content: "Enter a new question...",
-    #                                         survey_id: "#{@survey.id}")
+    @makenewquestion = SurveyItem.new
     # redirect to root if the survey doesn't exist
     if @survey.nil?
       redirect_to root_url
