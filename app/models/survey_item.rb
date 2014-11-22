@@ -5,6 +5,7 @@ class SurveyItem < ActiveRecord::Base
   belongs_to :survey
   # validation
   validates :survey_id, presence: true
+  validates :content, presence: true
   
   ##############################################
   # Association to self?

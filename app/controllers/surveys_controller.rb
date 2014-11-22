@@ -5,8 +5,19 @@ class SurveysController < ApplicationController
   
   # show contents of a survey
   def show
+    # gets the survey
     @survey = current_user.surveys.find_by(id: params[:id])
-    @questions = @survey.questions
+    # gets all of the survey questions associated with survey
+    
+    ##########################################################
+    # make questions in the database false by default
+    # Whenever we make a new question ==> question = true
+    # Whenever we make a new answer ==> question = false
+    ##########################################################
+    @questions = @survey.questions.where("question = ?", true)
+    # makes a temp survey question
+    # @makenewquestion = SurveyItem.new(content: "Enter a new question...",
+    #                                         survey_id: "#{@survey.id}")
     # redirect to root if the survey doesn't exist
     if @survey.nil?
       redirect_to root_url

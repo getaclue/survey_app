@@ -4,7 +4,8 @@ class User < ActiveRecord::Base
   
   # one to many association to surveys
   # destroy surveys upon deletion of user
-  has_many :surveys, dependent: :destroy
+  has_many :surveys, inverse_of: :user, 
+                      dependent: :destroy
   
   # confirms the email format
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i

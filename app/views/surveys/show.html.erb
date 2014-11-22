@@ -1,5 +1,5 @@
 <% # AREA FOR EDITING A PARTICULAR SURVEY %>
-<div class="text-center panel">
+  <div class="text-center panel">
         <% 
           # Allow the user to edit the title if needed and submit the change via
           # update method. Add a save title button or something similar.
@@ -21,19 +21,18 @@
             </div>
           <% end %>
           
+          <% # Add a question %>
+                    <% # link_to "Add Answer", "#", class: "button" %>
+          <% # GOES HERE %>
+          
+          <%= link_to "Make new survey", root_url, class: "button" %>
+   </div>
+
           <% @questions.each do |question| %>
             <ul>
               <li>
-                <%= question.id %>
                 <%= question.content %> [<%= link_to "Edit", survey_question_path(@survey.id, question.id) %>]
               </li>
             </ul>
           <% end %>
-          
-          <% # SHOW ANSWER %>
-          <p>
-            <%= link_to "Add Answer", "#", class: "button" %>
-          <p>
-          <%= link_to "Make new survey", root_url, class: "button" %>
-          </p>
-</div>
+        
