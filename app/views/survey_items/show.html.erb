@@ -1,11 +1,5 @@
 <h3><%= link_to @survey.title, @survey %></h3>
 <h3>Question: <%= @question.content %></h3>
-<% if @question.answers.any? %>
-  <% @answers.each do |answer| %>
-    <ul>
-      <li>
-        <%= answer.content %>
-      </li>
-    </ul>
+  <% if @question.answers.any? %>
+    <%= render 'survey_item' %>
   <% end %>
-<% end %>

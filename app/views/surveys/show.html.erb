@@ -32,6 +32,13 @@
             <ul>
               <li>
                 <%= question.content %> [<%= link_to "Edit", survey_question_path(@survey.id, question.id) %>]
+                <% if question.answers.any? %>
+                  <ul>
+                  <% @answers = question.answers %>
+                  <%= render 'survey_items/survey_item', 
+                                                collection: @answers %>
+                  </ul>
+                <% end %>
               </li>
             </ul>
           <% end %>
