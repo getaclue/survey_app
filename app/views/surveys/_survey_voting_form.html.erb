@@ -1,8 +1,8 @@
 <% @questions.each do |question| %>
 
     <div class="panel callout">
-      <%= form_for(question, url: survey_questions_path(current_survey)) do |form| %>
-        <% @answers = question.answers %>
+      <% @answers = question.answers %>
+      <%= form_for(question, url: question_vote_item_path(:id, :question_id)) do |form| %>
         <div class="row">
           <div class="large-12 columns">
             <%= form.label question.content %>

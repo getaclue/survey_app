@@ -7,4 +7,8 @@ class SurveyItemsController < ApplicationController
   def show
     redirect_to question_path(params[:id])
   end
+  
+  def create
+    #activate a question
+  end
 end

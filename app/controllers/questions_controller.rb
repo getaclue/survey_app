@@ -1,6 +1,8 @@
 class QuestionsController < ApplicationController
   # dont forget about the survey_id cookie!!
   # remove it before final version
+  
+  include VoteItemsHelper
 
   def show
     # show a question and its answers

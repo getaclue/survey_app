@@ -11,15 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141123184219) do
+ActiveRecord::Schema.define(version: 20141123202058) do
 
   create_table "survey_items", force: true do |t|
     t.text     "content"
     t.integer  "survey_id"
     t.integer  "question_id"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
-    t.boolean  "question",    default: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.boolean  "question",       default: false
+    t.integer  "answer_counter"
+    t.boolean  "active",         default: false
   end
 
   add_index "survey_items", ["question"], name: "index_survey_items_on_question"

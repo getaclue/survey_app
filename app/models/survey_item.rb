@@ -15,18 +15,6 @@ class SurveyItem < ActiveRecord::Base
                       dependent: :destroy
   belongs_to :question, class_name: "SurveyItem"
   
-  ##############################################
-  # Association to self? Attempt #2
-  ##############################################
-  # has_one :question_relationships, class_name: "Relationship",
-  #                                   foreign_key: "question_id",
-  #                                   dependent: :destroy
-  
-  # has_many :answer_relationships, class_name: "Relationship",
-  #                                   foreign_key: "answer_id",
-  #                                   dependent: :destroy
-  
-  # has_many :questions, through: :question_relationships
-  # has_many :answers, through: :answer_relationships
-  
+  # can activate the voting several times
+  has_many :vote_items, dependent: :destroy
 end
