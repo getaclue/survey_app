@@ -5,17 +5,18 @@ class SurveysController < ApplicationController
   
   # show contents of a survey
   def show
-    # gets the survey
-    survey = current_user.surveys.find_by(id: params[:id])
-
+    # gets the survey requested
+    survey_requested = Survey.find_by(id: params[:id])
+    @survey_owner = User.find_by(id: survey_requested.user)
+    
     # checks that a survey is not assigned
     # if is not assigned... good. assign it to a session id
     # otherwise... clear the session id and assign a new id
     if !current_survey?
-      add_current_survey(survey)
+      add_current_survey(survey_requested)
     else
       remove_current_survey
-      add_current_survey(survey)
+      add_current_survey(survey_requested)
     end
     
     ##########################################################

@@ -1,0 +1,21 @@
+<% @questions.each do |question| %>
+
+    <div class="panel callout">
+      <%= form_for(question, url: survey_questions_path(current_survey)) do |form| %>
+        <% @answers = question.answers %>
+        <div class="row">
+          <div class="large-12 columns">
+            <%= form.label question.content %>
+            <%= form.collection_radio_buttons :question_id, 
+                                            @answers, 
+                                            :id,
+                                            :content%>
+          </div>
+          <div class="large-12 columns">
+              <%= form.submit "Vote", class: "button expand tiny" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+<% end %>

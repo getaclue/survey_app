@@ -1,0 +1,8 @@
+<h3>Surveys by <%= @user.name %>:</h3>
+  <ol>
+    <% @surveys.each do |survey| %>
+      <li>
+          <%= link_to survey.title, survey_path(survey) %>
+      </li>
+    <% end %>
+</ol>

@@ -2,16 +2,11 @@
   <ol>
     <% @surveys.each do |survey| %>
       <li>
-        <% if current_user?(@user) %>
-          <% # if the user is the correct user, allow them to see the link %>
+          <%# if the user is the correct user, allow them to see the link %>
           <%= link_to survey.title, survey %> 
           [<%= link_to "Delete Survey", survey_path(survey), 
                                       method: :delete,
                                         data: {confirm: "Are you sure?"} %>]
-        <% else  %>
-          <% # otherwise, only show just the title %>
-          <%= survey.title %>
-        <% end %>
       </li>
     <% end %>
 </ol>

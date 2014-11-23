@@ -74,7 +74,7 @@ module SessionsHelper
   end
   
   ##########################################
-  # End Dealing with users
+  # End Dealing with surveys
   ##########################################
   
 end

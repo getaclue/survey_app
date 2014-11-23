@@ -1,3 +1,7 @@
 <%# if user is the admin then see the page below %>
-<%= render 'shared/survey_main_admin' %>
+    <% if current_user?(@survey_owner) %>
+      <%= render 'shared/survey_main_admin' %>
+    <% else %>
 <%# otherwise, show a page with voting options checkboxes %>
+      <%= render 'surveys/survey_voting_form' %>
+    <% end %>

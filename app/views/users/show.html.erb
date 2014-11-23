@@ -12,8 +12,11 @@
     </ul>
   </div>
   <div class="small-7 columns">
-    <% if @user.surveys.any? %>
+    <% if @user.surveys.any? && current_user?(@user) %>
+      <%# User has surveys AND current_user is the owner of the survey %>
       <%= render 'shared/survey_admin_list' %>
+    <% elsif @user.surveys.any? && !current_user?(@user) %>
+      <%= render 'shared/survey_basic_list' %>
     <% else %>
       <h3>Sorry, <%= @user.name %> doesn't have any surveys.</h3>
     <% end %>
