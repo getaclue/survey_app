@@ -9,7 +9,6 @@ gem 'jquery-rails',         '4.0.0.beta2'
 gem 'turbolinks',           '2.3.0'
 gem 'jbuilder',             '2.2.3'
 gem 'foundation-rails'
-gem 'unicorn'
 
 group :development, :test do
   gem 'sqlite3',     '1.3.9'
@@ -27,4 +26,5 @@ end
 group :production do
   gem 'pg',             '0.17.1'
   gem 'rails_12factor', '0.0.2'
+  gem 'unicorn'
 end
