@@ -33,6 +33,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @surveys = @user.surveys
+    remove_current_survey
   end
   
   # Responds to POST request

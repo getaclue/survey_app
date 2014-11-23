@@ -1,6 +1,0 @@
-<h3><%= link_to current_survey.title, current_survey %></h3>
-<h3>Question: <%= @question.content %></h3>
-  <% if @question.answers.any? %>
-    <%= render 'survey_item' %>
-  <% end %>
-<%= render 'new_answer', object: @newanswer %>

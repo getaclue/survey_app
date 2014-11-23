@@ -18,17 +18,17 @@
           <%= link_to "Activate survey", '#', class: "button disabled" %>
           </div>
 
-          <%= render 'survey_items/new_question', object: @makenewquestion %>
+          <%= render 'questions/new_question', object: @makenewquestion %>
 
           <% @questions.each do |question| %>
           <div class="panel">
             <ul>
               <li>
-                <%= question.content %> [<%= link_to "Edit Question", survey_question_path(current_survey, question.id) %>]
+                <%= question.content %> [<%= link_to "Edit Question", survey_survey_item_path(current_survey, question) %>]
                 <% if question.answers.any? %>
                   <ul>
                   <% @answers = question.answers %>
-                  <%= render 'survey_items/survey_item', 
+                  <%= render 'answers/answer_list', 
                                                 collection: @answers %>
                   </ul>
                 <% end %>
