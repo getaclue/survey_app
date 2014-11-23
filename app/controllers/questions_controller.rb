@@ -11,11 +11,11 @@ class QuestionsController < ApplicationController
   
   def create
     # create a new question ONLY
-    @newquestion = SurveyItem.new(create_new_survey_item_parameters)
-    @newquestion.toggle(:question)
-    if current_survey.questions << @newquestion
+    question = SurveyItem.new(create_new_survey_item_parameters)
+    question.toggle(:question)
+    if current_survey.questions << question
       flash[:success] = "Added a new question"
-      redirect_to current_survey
+      redirect_to survey_survey_item_path(current_survey, question)
     end
   end
   
