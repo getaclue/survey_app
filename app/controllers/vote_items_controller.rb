@@ -34,9 +34,10 @@ class VoteItemsController < ApplicationController
   # process voting
   def update
     @question = current_survey.questions.find_by(id: params[:question_id])
+    @answerid = permitted_params
     
     if @question.active?
-      @answer_to_update = SurveyItem.find(question_id: params[:question_id]).find_by(id: params[:id])
+      @answer_to_update = SurveyItem.find(question_id: params[:question_id]).find_by(id: @answerid)
       @counter = @answer_to_update.answer_counter
       @counter = @counter + 1
       @answer_to_update.update_attributes(answer_counter: @counter)
@@ -49,4 +50,9 @@ class VoteItemsController < ApplicationController
     end
     
   end
+  
+  private
+    def permitted_params
+      params.require(:survey_item).permit(:question_id)
+    end
 end

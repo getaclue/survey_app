@@ -2,7 +2,7 @@
 
     <div class="panel callout">
       <% @answers = question.answers %>
-      <%= form_for(question, url: question_vote_item_path(:id, :question_id)) do |form| %>
+      <%= form_for(question, url: question_vote_item_path(question.id, :id)) do |form| %>
         <div class="row">
           <div class="large-12 columns">
             <%= form.label question.content %>
