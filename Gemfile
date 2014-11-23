@@ -8,9 +8,8 @@ gem 'coffee-rails',         '4.0.1'
 gem 'jquery-rails',         '4.0.0.beta2'
 gem 'turbolinks',           '2.3.0'
 gem 'jbuilder',             '2.2.3'
-gem 'rails-html-sanitizer', '1.0.1'
 gem 'foundation-rails'
-gem 'sdoc',                 '0.4.0', group: :doc
+gem 'unicorn'
 
 group :development, :test do
   gem 'sqlite3',     '1.3.9'
