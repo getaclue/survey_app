@@ -2,8 +2,10 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-  include SessionsHelper
   
+  # handle session cookies
+  include SessionsHelper
+
   private
   
       # Helped method for before_action Rails method for edit and update actions

@@ -1,16 +1,6 @@
-<h3><%= link_to @survey.title, @survey %></h3>
+<h3><%= link_to current_survey.title, current_survey %></h3>
 <h3>Question: <%= @question.content %></h3>
   <% if @question.answers.any? %>
     <%= render 'survey_item' %>
   <% end %>
-  
-<% ################################################################ %>
-<% # End display survey questions %>
-<% ################################################################ %>
-<% ################################################################ %>
-<% # Stat add a question %>
-<% ################################################################ %>
-  <%# render 'survey_items/new', object: @newanswer %>
-<% ################################################################ %>
-<% # End Add a question %>
-<% ################################################################ %>
+<%= render 'new_answer', object: @newanswer %>

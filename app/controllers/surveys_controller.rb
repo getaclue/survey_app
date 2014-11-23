@@ -6,19 +6,28 @@ class SurveysController < ApplicationController
   # show contents of a survey
   def show
     # gets the survey
-    @survey = current_user.surveys.find_by(id: params[:id])
-    # gets all of the survey questions associated with survey
+    survey = current_user.surveys.find_by(id: params[:id])
+
+    # checks that a survey is not assigned
+    # if is not assigned... good. assign it to a session id
+    # otherwise... clear the session id and assign a new id
+    if !current_survey?
+      add_current_survey(survey)
+    else
+      remove_current_survey
+      add_current_survey(survey)
+    end
     
     ##########################################################
     # make questions in the database false by default
     # Whenever we make a new question ==> question = true
     # Whenever we make a new answer ==> question = false
     ##########################################################
-    @questions = @survey.questions.where("question = ?", true)
+    @questions = current_survey.questions.where("question = ?", true)
     # makes a temp survey question
     @makenewquestion = SurveyItem.new
     # redirect to root if the survey doesn't exist
-    if @survey.nil?
+    if current_survey.nil?
       redirect_to root_url
     end
   end
@@ -34,13 +43,14 @@ class SurveysController < ApplicationController
     end
   end
   
-  # only actions allowed = create and destroy survey
+  # create a new survey
   def create
     @survey = current_user.surveys.build(survey_parameters)
     if @survey.save
       # create an empty question automatically
-      @question = @survey.questions.build(content: "Create your question...")
-      @question.save
+      # @question = @survey.questions.build(content: "Create your question...")
+      # @question.save
+      
       # survey has been successfully saved
       flash[:success] = "Survey Created!"
       redirect_to current_user

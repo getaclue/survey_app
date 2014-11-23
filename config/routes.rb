@@ -16,7 +16,8 @@ Rails.application.routes.draw do
   resources :surveys, only: [:create, :destroy, :show, :update] do
     #resources :survey_items, only: [:create, :destroy, :update]
     resources :questions, controller: 'survey_items' do
-      resources :answers, controller: 'survey_items', only: [:create, :destroy, :update]
+      resources :answers, controller: 'survey_items', 
+                                only: [:new, :create, :destroy, :update]
     end
   end
 

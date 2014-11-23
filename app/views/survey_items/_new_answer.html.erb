@@ -1,0 +1,15 @@
+<%= form_for(@newanswer, url: new_survey_question_answer_path(@survey.id, 
+                                  @question.id) ) do |form| %>
+  <div class="row">
+    <div class="large-12 columns">
+      <div class="row collapse">
+        <div class="small-10 columns">
+          <%= form.text_field :content, placeholder: "Enter an answer" %>
+        </div>
+        <div class="small-2 columns">
+          <%= form.submit "Add Answer", class: "button postfix" %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
