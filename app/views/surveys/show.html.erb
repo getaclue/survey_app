@@ -24,7 +24,11 @@
           <div class="panel">
             <ul>
               <li>
-                <%= question.content %> [<%= link_to "Edit Question", survey_survey_item_path(current_survey, question) %>]
+                <%= question.content %> 
+                [<%= link_to "Edit Question", survey_survey_item_path(current_survey, question) %>]
+                [<%= link_to "Delete Question", survey_question_path(current_survey, question), 
+                                      method: :delete,
+                                        data: {confirm: "Are you sure?"}%>]
                 <% if question.answers.any? %>
                   <ul>
                   <% @answers = question.answers %>

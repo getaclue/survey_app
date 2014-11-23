@@ -4,7 +4,7 @@ class QuestionsController < ApplicationController
 
   def show
     # show a question and its answers
-    @question = current_survey.questions.find(params[:id])
+    @question = current_user.surveys.find(current_survey.id).questions.find(params[:id])
     @answers = @question.answers
     @newanswer = SurveyItem.new
   end
@@ -21,11 +21,25 @@ class QuestionsController < ApplicationController
   
   def update
     # update a question content
-    @surveyitem = current_survey.questions.find(params[:id])
+    current_question = current_user.surveys.find(current_survey.id).questions.find(params[:id])
+    if current_question.update_attributes(create_new_survey_item_parameters)
+      # update was successful
+      # flash message and redirect to show action
+      flash[:success] = "Question updated"
+      redirect_to survey_survey_item_path(current_survey, current_question)
+    else
+      # update was unsuccessful
+      # show the show action again
+      render 'show'
+    end
   end
   
   def destroy
     # destroy a question
+    current_question = current_user.surveys.find(current_survey.id).questions.find(params[:id])
+    current_question.destroy
+    flash[:success] = "Question deleted!"
+    redirect_to survey_path(current_survey.id)
   end
   
   private

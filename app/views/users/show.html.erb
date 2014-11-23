@@ -13,27 +13,9 @@
   </div>
   <div class="small-7 columns">
     <% if @user.surveys.any? %>
-    <h3>Surveys by <%= @user.name %>:</h3>
-        <ol>
-          <% @surveys.each do |survey| %>
-            <li>
-              <% if current_user?(@user) %>
-                <% # if the user is the correct user, allow them to see the link %>
-                <%= link_to survey.title, survey %>
-              <% else  %>
-                <% # otherwise, only show the title %>
-                <%= survey.title %>
-              <% end %>
-                <% if current_user?(@user) %>
-                  [<%= link_to "Delete Survey", survey_path(survey), 
-                                    method: :delete,  
-                                    data: {confirm: "Are you sure?"} %>]
-                <% end %>
-            </li>
-          <% end %>
-        </ol>
-      <% else %>
-        <h3>Sorry, <%= @user.name %> doesn't have any surveys.</h3>
+      <%= render 'shared/survey_admin_list' %>
+    <% else %>
+      <h3>Sorry, <%= @user.name %> doesn't have any surveys.</h3>
     <% end %>
     <% if current_user?(@user) %>
         <%= link_to "Create a new survey", root_url, class: "button" %>

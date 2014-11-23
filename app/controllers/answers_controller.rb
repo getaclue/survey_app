@@ -9,7 +9,8 @@ class AnswersController < ApplicationController
   # need question_id
   def create
     # make an answer SurveyItem only
-
+    
+    # case 1: No answers present
     # does the question have any answers?
     if !parent_answers?
       new_answer = parent_question.answers.create(create_new_survey_item_parameters)
@@ -17,6 +18,7 @@ class AnswersController < ApplicationController
       flash[:success] = "Added a new question"
       redirect_to question_path(parent_question)
     else
+      # case 2: answers present
       new_answer = SurveyItem.new(create_new_survey_item_parameters)
       new_answer.update_attributes(survey_id: current_survey.id)
       if parent_question.answers << new_answer
