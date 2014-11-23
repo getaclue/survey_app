@@ -17,5 +17,5 @@
     <%= render 'answers/new_answer', object: @newanswer %>
   
     <% if @answers.any? %>
-      <%= render 'answers/answer_list' %>
+      <%= render 'answers/edit', collection: @answers %>
     <% end %>

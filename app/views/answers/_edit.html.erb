@@ -1,0 +1,16 @@
+<% @answers.each do |answer| %>
+  <%= form_for(answer, url: question_answer_path(@question, answer)) do |answer_form| %>
+    <div class="row">
+      <div class="large-12 columns">
+        <div class="row collapse">
+          <div class="small-10 columns">
+            <%= answer_form.text_field :content %>
+          </div>
+          <div class="small-2 columns">
+            <%= answer_form.submit "Edit", class: "button postfix alert" %>
+          </div>
+        </div>
+      </div>
+      </div>
+  <% end %>
+<% end %>
