@@ -32,7 +32,17 @@ class SurveyItemsController < ApplicationController
       question_id = params[:id]
       
       current_answer = current_survey.questions.find(question_id).answers.find(answer_id)
-      @counter = current_answer.answer_counter
+      
+      if current_answer.answer_counter.nil?
+        current_answer.update(answer_counter: "1")
+        @counter = current_answer.answer_counter
+      else
+        @counter = current_answer.answer_counter
+        @counter += 1
+        current_answer.update(answer_counter: @counter)
+        @counter = current_answer.answer_counter
+      end
+    
       flash[:success] = "Voted! Counter: #{@counter}"
   
       #########################################################
