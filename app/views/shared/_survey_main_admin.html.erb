@@ -14,7 +14,7 @@
             </div>
           <% end %>
           <%= link_to "Make new survey", root_url, class: "button" %>
-          <%= link_to "Activate survey", question_vote_items_path(current_survey),
+          <%= link_to "Activate survey", '#',
                       method: :create, class: "button disabled" %>
           </div>
 
@@ -29,7 +29,14 @@
                 [<%= link_to "Delete Question", survey_question_path(current_survey, question), 
                                       method: :delete,
                                         data: {confirm: "Are you sure?"}%>]
-                <%= link_to "Activate Question", question_vote_items_path(current_survey), method: :create, class: "button" %>
+                <%= link_to "Activate Question", question_vote_items_path(question.id), 
+                                                  method: :create, 
+                                                  class: "button" %>
+                <%= link_to "Deactivate Question", question_vote_item_path(question.id, 1), 
+                                                  method: :delete,
+                                                  data: {confirm: "Are you sure?"},
+                                                  class: "button" %>
+                
                 <% if question.answers.any? %>
                   <ul>
                   <% @answers = question.answers %>

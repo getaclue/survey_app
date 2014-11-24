@@ -1,4 +1,5 @@
-<% @questions.each do |question| %>    
+<% @questions.each do |question| %>
+  <% if question.active? %>
     <div class="panel callout">
       <%= form_for question, url: survey_survey_item_path(current_survey, question) do |question_form| %>
         <%= question_form.label question.content %>
@@ -15,4 +16,5 @@
         </div>
       <% end %>
     </div>
+  <% end %>
 <% end %>

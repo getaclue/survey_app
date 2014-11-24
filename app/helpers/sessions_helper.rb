@@ -68,6 +68,11 @@ module SessionsHelper
     @current_survey = nil
   end
   
+  # is question part of survey?
+  def current_survey_have?(question)
+    current_survey.questions.exists?(question.id)
+  end
+  
   # is there a survey assigned to a current_survey?
   def current_survey?
     !current_survey.nil?
