@@ -1,14 +1,14 @@
-<%= form_for(@current_question, url: question_vote_item_path(@current_question, :id)) do |form| %>
+<%= form_for(@current_question), url: question_vote_item_path(params[:question_id], params[:id]) do |form| %>
   <div class="row">
     <div class="large-12 columns">
       <%= form.label @current_question.content %>
-      <%= form.collection_radio_buttons :question_id, 
+      <%# form.collection_radio_buttons :question_id, 
                                       @answers, 
                                       :id,
                                       :content%>
     </div>
     <div class="large-12 columns">
-        <%= form.submit "Vote", class: "button expand tiny" %>
+        <%# form.submit "Vote", class: "button expand tiny" %>
     </div>
   </div>
 <% end %>

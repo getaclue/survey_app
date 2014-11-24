@@ -1,6 +1,16 @@
-<% @questions.each do |question| %>
-  <% @current_question = question %>
+<% @questions.each do |question| %>    
     <div class="panel callout">
-      <%= question.content %>
+      <%= form_for question, url: survey_question_path(current_survey, question) do |question_form| %>
+        <%= question_form.label question.content %>
+        <%= question_form.text_field :content %>
+        
+        <% question.answers.each do |answer| %>
+          <%= question_form.fields_for :answers, answer do |answer_fields| %>
+            <%= answer_fields.radio_button "#{answer.content}", answer.id, checked: false  %>
+            <%= answer_fields.label answer.content %>
+          <% end %>
+        <% end %>
+        
+      <% end %>
     </div>
 <% end %>
