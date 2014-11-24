@@ -5,9 +5,9 @@
         <%= question_form.label question.content %>
         <div class="row">
             <div class="large-12 columns">
-            <%= question_form.collection_radio_buttons :id, # gets question_id
-                                                  question.answers,
-                                                  :id, # gets answe_id
+              <%= question_form.collection_radio_buttons :id, # gets question_id
+                                            question.answers,
+                                                          :id, # gets answe_id
                                                   :content %>
             </div>
             <div class="large-12 columns">
