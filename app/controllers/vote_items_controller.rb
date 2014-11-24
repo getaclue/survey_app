@@ -32,7 +32,7 @@ class VoteItemsController < ApplicationController
   end
   
   def edit
-    render plain: params[].inspect
+    render plain: params[:survey_item][:id].inspect
   end
   
   # process voting
@@ -40,11 +40,11 @@ class VoteItemsController < ApplicationController
     @question = current_survey.questions.find_by(id: params[:question_id])
 
     if @question.active?
-      @answer_to_update = SurveyItem.find(question_id: params[:question_id]).find_by(id: params[:survey_item][:question_id])
-      @counter = @answer_to_update.answer_counter
-      @counter = @counter + 1
-      @answer_to_update.update_attributes(answer_counter: @counter)
-      @answer_to_update.save
+      # @answer_to_update = SurveyItem.find(question_id: params[:question_id]).find_by(id: params[:survey_item][:question_id])
+      # @counter = @answer_to_update.answer_counter
+      # @counter = @counter + 1
+      # @answer_to_update.update_attributes(answer_counter: @counter)
+      # @answer_to_update.save
       flash[:success] = "Voted! #{@counter}"
       redirect_to survey_path(current_survey)
     else

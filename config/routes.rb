@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   # controlling the survey and questions
   resources :surveys, only: [:create, :destroy, :show, :update] do
     resources :questions, only: [:create, :update, :destroy]
-    resources :survey_items, only: [:show, :create]
+    resources :survey_items, only: [:show, :create, :update]
   end
   
   # controlling questions and answers of a survey

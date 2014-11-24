@@ -12,4 +12,16 @@ class SurveyItemsController < ApplicationController
     # activate a question
     # redirect_to
   end
+  
+  def update
+    render plain: params[:survey_item].inspect
+    #####################
+    # Extract question_id
+    # Extract answer_id
+    # Update
+    # Redirect
+    #####################
+    # redirect_to qestion_vote_item_path(id, params[:survey_item][:answer_attributes][:answer_id])
+    # redirect_to qestion_vote_item_path(question_id, id)
+  end
 end

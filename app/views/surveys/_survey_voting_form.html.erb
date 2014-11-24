@@ -1,16 +1,12 @@
 <% @questions.each do |question| %>    
     <div class="panel callout">
-      <%= form_for question, url: survey_question_path(current_survey, question) do |question_form| %>
+      <%= form_for question, url: survey_survey_item_path(current_survey, question) do |question_form| %>
         <%= question_form.label question.content %>
-        <%= question_form.text_field :content %>
-        
-        <% question.answers.each do |answer| %>
-          <%= question_form.fields_for :answers, answer do |answer_fields| %>
-            <%= answer_fields.radio_button "#{answer.content}", answer.id, checked: false  %>
-            <%= answer_fields.label answer.content %>
-          <% end %>
-        <% end %>
-        
+          <%= question_form.collection_radio_buttons :id, # gets question_id
+                                                question.answers,
+                                                :id, # gets answe_id
+                                                :content %>
+        <%= question_form.submit "Vote", class: "button" %>
       <% end %>
     </div>
 <% end %>
