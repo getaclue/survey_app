@@ -2,11 +2,17 @@
     <div class="panel callout">
       <%= form_for question, url: survey_survey_item_path(current_survey, question) do |question_form| %>
         <%= question_form.label question.content %>
-          <%= question_form.collection_radio_buttons :id, # gets question_id
-                                                question.answers,
-                                                :id, # gets answe_id
-                                                :content %>
-        <%= question_form.submit "Vote", class: "button" %>
+        <div class="row">
+            <div class="large-12 columns">
+            <%= question_form.collection_radio_buttons :id, # gets question_id
+                                                  question.answers,
+                                                  :id, # gets answe_id
+                                                  :content %>
+            </div>
+            <div class="large-12 columns">
+              <%= question_form.submit "Vote", class: "button expand tiny" %>
+            </div>
+        </div>
       <% end %>
     </div>
 <% end %>

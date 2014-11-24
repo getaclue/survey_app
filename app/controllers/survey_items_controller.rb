@@ -14,14 +14,19 @@ class SurveyItemsController < ApplicationController
   end
   
   def update
-    render plain: params[:survey_item].inspect
-    #####################
-    # Extract question_id
-    # Extract answer_id
-    # Update
-    # Redirect
-    #####################
-    # redirect_to qestion_vote_item_path(id, params[:survey_item][:answer_attributes][:answer_id])
-    # redirect_to qestion_vote_item_path(question_id, id)
+    answer_id = params[:survey_item][:id]
+    question_id = params[:id]
+    
+    flash[:success] = "Voted!"
+    # render plain: params[:id]
+    # answer_id = params[:survey_item][:id]
+    # redirect_to question_vote_items_path(question_id: "#{question_id}", answer_id: "#{answer_id}"), action: :create
+    # redirect_to question_vote_item_path(question_id, answer_id)
+    
+    #########################################################
+    # Nifty... can pass back values (can disable submissions)
+    #########################################################
+    # redirect_to survey_path(current_survey.id, last_answered: question_id)
+    redirect_to survey_path(current_survey)
   end
 end
