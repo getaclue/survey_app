@@ -16,7 +16,4 @@ class SurveyItem < ActiveRecord::Base
   accepts_nested_attributes_for :answers
   
   belongs_to :question, class_name: "SurveyItem"
-  
-  # can activate the voting several times
-  has_many :vote_items, dependent: :destroy
 end

@@ -38,10 +38,15 @@ class QuestionsController < ApplicationController
   
   def destroy
     # destroy a question
-    current_question = current_user.surveys.find(current_survey.id).questions.find(params[:id])
-    current_question.destroy
-    flash[:success] = "Question deleted!"
-    redirect_to survey_path(current_survey.id)
+    question_id = params[:id]
+    question_to_delete = SurveyItem.find_by(id: question_id)
+    
+    if current_survey_have?(question_to_delete)
+        question_to_delete.destroy
+        flash[:success] = "Question deleted!"
+    end
+    
+    redirect_to survey_path(current_survey)
   end
   
   private
