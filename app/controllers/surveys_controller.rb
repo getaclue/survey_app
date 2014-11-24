@@ -16,6 +16,7 @@ class SurveysController < ApplicationController
     # if the survey does not exist... redirect to root.
     #################################################################
     if !survey_requested
+      flash[:alert] = "Sorry, that survey does not exist."
       redirect_to root_url
     else
       #################################################################

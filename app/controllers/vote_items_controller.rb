@@ -43,8 +43,10 @@ class VoteItemsController < ApplicationController
     redirect_to survey_path(current_survey)
   end
   
+  #################################################################
   # make question not active
   # activate one question for a survey
+  #################################################################
   def destroy
     # deactivate a questions
     question_to_destroy = SurveyItem.find_by(id: params[:question_id])

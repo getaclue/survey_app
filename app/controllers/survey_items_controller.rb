@@ -32,8 +32,8 @@ class SurveyItemsController < ApplicationController
       question_id = params[:id]
       
       current_answer = current_survey.questions.find(question_id).answers.find(answer_id)
-      current_answer.answer_counter
-      flash[:success] = "Voted!"
+      @counter = current_answer.answer_counter
+      flash[:success] = "Voted! Counter: #{@counter}"
   
       #########################################################
       # Note to self

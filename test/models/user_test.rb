@@ -1,5 +1,12 @@
 require 'test_helper'
 
+############################################
+# These tests were taken from the tutorials
+# as described by www.railstutorial.org/book
+# Most were slightly modified to conform to our
+# app.
+############################################
+
 class UserTest < ActiveSupport::TestCase
   
   #Create a default dummy user
