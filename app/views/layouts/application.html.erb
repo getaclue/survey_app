@@ -12,36 +12,48 @@
   </head>
 
   <body>
-    
-  <nav class="top-bar">
-    <ul class="title-area">
-      <li class="name">
-        <h1><%= link_to "Survey App", root_path %></h1>
-      </li>
-    </ul>
-    <section class="top-bar-section">
-      <ul class="right">
-        <% if signed_in? %>
-          <!-- Start menu item shown only if signed in -->
-            <li class="divider"></li>
-            <li><%= link_to "Profile", user_path(current_user) %></li>
-            <li class="divider"></li>
-            <li><%= link_to "Users", users_path %></li>
-            <li class="divider"></li>
-            <li><%= link_to "Settings", edit_user_path(current_user) %></li>
-            <li class="divider"></li>
-            <li><%= link_to "Sign out", signout_path, method: :delete, class: "button" %></li>
-          <!-- END menu item shown only if signed in -->
-          <% else %>
-            <li class="divider"></li>
-            <li><%= link_to "Sign up", signup_path %></li>
-        <% end %>
-      </ul>
-    </section>
-  </nav>
-  
   <div class="row">
       <div class="small-12 columns">
+	  
+	    <div class="contain-to-grid">
+  		  <nav class="top-bar" role="navigation">
+      			<ul class="title-area">
+      			<li class="name">
+      			  <h1><%= link_to "Survey App", root_path %></h1>
+      			</li>
+      			</ul>
+      	  
+      			<section class="top-bar-section">
+      				<ul class="right">
+      				<% if signed_in? %>
+      				  <!-- Start menu item shown only if signed in -->
+      					<li>
+      						<%= link_to "Profile", user_path(current_user) %>
+      					</li>
+      					<li class="divider"></li>
+      					<li>
+      						<%= link_to "Users", users_path %>
+      					</li>
+      					<li class="divider"></li>
+      					<li>
+      						<%= link_to "Settings", edit_user_path(current_user) %>
+      					</li>
+      					<li class="divider"></li>
+      					<li class="has-form">
+      						<%= link_to "Sign out", signout_path, method: :delete, class: "button" %>
+      					</li>
+      					<!-- END menu item shown only if signed in -->
+      					<% else %>
+      					<li class="divider"></li>
+      					<li>
+      						<%= link_to "Sign up", signup_path %>
+      					</li>
+      					<% end %>
+      				</ul>
+      			</section>
+  		   </nav>
+	   </div>
+	   
         <% flash.each do |message_type, message| %>
         <div data-alert class="alert-box <%= message_type %>">
               <%= message %>
