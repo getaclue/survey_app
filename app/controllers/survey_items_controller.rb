@@ -9,6 +9,7 @@ class SurveyItemsController < ApplicationController
   end
   
   def create
-    #activate a question
+    # activate a question
+    # redirect_to
   end
 end

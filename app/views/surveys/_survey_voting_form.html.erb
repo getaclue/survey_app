@@ -1,21 +1,6 @@
 <% @questions.each do |question| %>
-
+  <% @current_question = question %>
     <div class="panel callout">
-      <% @answers = question.answers %>
-      <%= form_for(question, url: question_vote_item_path(question.id, :id)) do |form| %>
-        <div class="row">
-          <div class="large-12 columns">
-            <%= form.label question.content %>
-            <%= form.collection_radio_buttons :question_id, 
-                                            @answers, 
-                                            :id,
-                                            :content%>
-          </div>
-          <div class="large-12 columns">
-              <%= form.submit "Vote", class: "button expand tiny" %>
-          </div>
-        </div>
-      <% end %>
+      <%= question.content %>
     </div>
-
 <% end %>

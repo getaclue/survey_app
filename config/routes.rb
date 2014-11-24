@@ -15,14 +15,13 @@ Rails.application.routes.draw do
   # controlling the survey and questions
   resources :surveys, only: [:create, :destroy, :show, :update] do
     resources :questions, only: [:create, :update, :destroy]
-    resources :survey_items, only: [:show]
-    resources :vote_items, only: [:create, :destroy]
+    resources :survey_items, only: [:show, :create]
   end
   
   # controlling questions and answers of a survey
   resources :questions, only: [:show] do
     resources :answers, only: [:new, :create, :destroy, :update]
-    resources :vote_items, only: [:update]
+    resources :vote_items, only: [:create, :destroy, :edit, :update]
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
