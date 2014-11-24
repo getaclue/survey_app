@@ -1,9 +1,14 @@
 class SurveyItemsController < ApplicationController
   
-  # show the specific survey item associated with a survey
-  # must show the question
-  # must show the answers
+  #################################################################
+  # intermediary controller used to manipulate questions and answers
+  # (and vote processing)
+  #################################################################
   
+  #################################################################
+  # Action used to help remove multiple levels of nesting
+  # simply redirects to the show action of the question controller
+  #################################################################
   def show
     # simply redirect to show a question
     redirect_to question_path(params[:id])
@@ -12,8 +17,13 @@ class SurveyItemsController < ApplicationController
   def create
   end
   
+  #################################################################
+  # Action used to update the vote count on a question
+  #################################################################
   def update
-    # vote for a question
+    #################################################################
+    # User hit vote button even though no answers are present
+    #################################################################
     if !params[:survey_item].present?
       flash[:alert] = "No answers present."
       redirect_to survey_path(current_survey)
@@ -25,15 +35,12 @@ class SurveyItemsController < ApplicationController
       current_answer.answer_counter
       flash[:success] = "Voted!"
   
-      # render plain: params[:id]
-      # answer_id = params[:survey_item][:id]
-      # redirect_to question_vote_items_path(question_id: "#{question_id}", answer_id: "#{answer_id}"), action: :create
-      # redirect_to question_vote_item_path(question_id, answer_id)
-      
       #########################################################
-      # Nifty... can pass back values (can disable submissions)
-      #########################################################
+      # Note to self
+      # ...can pass back values after a vote to disable a question
+      # after a user has voted
       # redirect_to survey_path(current_survey.id, last_answered: question_id)
+      #################################################################
       redirect_to survey_path(current_survey)
     end
   end

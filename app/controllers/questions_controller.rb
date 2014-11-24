@@ -1,18 +1,26 @@
 class QuestionsController < ApplicationController
-  # dont forget about the survey_id cookie!!
-  # remove it before final version
   
   include VoteItemsHelper
-
+  
+  #################################################################
+  # Action used to display questions and answers
+  # Get the question associated with the survey
+  # Get all of the answers associated with a question
+  # Create a answer in case the user wants to add more questions
+  #################################################################
   def show
-    # show a question and its answers
     @question = current_user.surveys.find(current_survey.id).questions.find(params[:id])
     @answers = @question.answers
     @newanswer = SurveyItem.new
   end
   
+  #################################################################
+  # Action used to create a single question associated with a survey
+  # By default, toggle the question boolean (from false to true) to 
+  # indicate that the SurveyItem object is, indeed, a question and 
+  # not an answer
+  #################################################################
   def create
-    # create a new question ONLY
     question = SurveyItem.new(create_new_survey_item_parameters)
     question.toggle(:question)
     if current_survey.questions << question
@@ -21,6 +29,9 @@ class QuestionsController < ApplicationController
     end
   end
   
+  #################################################################
+  # Action used to undate the attributes of the question
+  #################################################################
   def update
     # update a question content
     current_question = current_user.surveys.find(current_survey.id).questions.find(params[:id])
@@ -49,8 +60,13 @@ class QuestionsController < ApplicationController
     redirect_to survey_path(current_survey)
   end
   
+  #################################################################
+  # Helper methods
+  #################################################################
   private
-    # used to create an answer and a quesiton
+    #################################################################
+    # method used to limit the parameters when modifying a question
+    #################################################################
     def create_new_survey_item_parameters
       params.require(:survey_item).permit(:content)
     end

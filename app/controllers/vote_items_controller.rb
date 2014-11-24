@@ -1,32 +1,46 @@
 class VoteItemsController < ApplicationController
   
-  # activate one question for a survey
+  #################################################################
+  # intermediary controller that is used to control activation
+  # and deactivation of a question in a survey
+  #################################################################
+  
+  #################################################################
+  # Create action is used to activate one question in a survey
+  #################################################################
   def create
-    # activate a questions
+    #################################################################
+    # Find the question that is trying to be activated
+    #################################################################
     question_to_activate = SurveyItem.find_by(id: params[:question_id])
     
+    #################################################################
     # check if question exists in survey
+    #################################################################
     if current_survey_have?(question_to_activate)
+      #################################################################
+      # check if current_user is the owner of the survey where the question
+      # is trying to be activated
+      #################################################################
       if current_user?(current_survey.user)
         if question_to_activate.active?
+          #################################################################
+          # No need to activate question b/c it is already active
+          #################################################################
           flash[:alert] = "Question is already active!"
         else
+          #################################################################
+          # Activate question by toggling active boolean from false to true
+          # and set the counter for the question to zero
+          #################################################################
           question_to_activate.toggle(:active)
           question_to_activate.update_attributes(answer_counter: 0)
           question_to_activate.save
-          flash[:success] = "#{question_to_activate.active}"
+          flash[:success] = "Question is now active. Users can now view the question."
         end
       end
     end
     redirect_to survey_path(current_survey)
-  end
-  
-  def edit
-    render plain: params[:survey_item][:id].inspect
-  end
-  
-  # process voting
-  def update
   end
   
   # make question not active

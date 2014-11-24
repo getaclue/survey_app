@@ -28,7 +28,7 @@
       				<% if signed_in? %>
       				  <!-- Start menu item shown only if signed in -->
       					<li>
-      						<%= link_to "Profile", user_path(current_user) %>
+      						<%= link_to "My Surveys", user_path(current_user) %>
       					</li>
       					<li class="divider"></li>
       					<li>
@@ -36,7 +36,7 @@
       					</li>
       					<li class="divider"></li>
       					<li>
-      						<%= link_to "Settings", edit_user_path(current_user) %>
+      						<%= link_to "Profile Settings", edit_user_path(current_user) %>
       					</li>
       					<li class="divider"></li>
       					<li class="has-form">
