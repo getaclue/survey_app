@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141123202058) do
+ActiveRecord::Schema.define(version: 20141124080538) do
 
   create_table "survey_items", force: true do |t|
     t.text     "content"
@@ -50,17 +50,5 @@ ActiveRecord::Schema.define(version: 20141123202058) do
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
-
-  create_table "vote_items", force: true do |t|
-    t.boolean  "active",       default: false
-    t.integer  "answer_count"
-    t.integer  "question_id"
-    t.integer  "answer_id"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
-  end
-
-  add_index "vote_items", ["answer_id"], name: "index_vote_items_on_answer_id"
-  add_index "vote_items", ["question_id"], name: "index_vote_items_on_question_id"
 
 end
