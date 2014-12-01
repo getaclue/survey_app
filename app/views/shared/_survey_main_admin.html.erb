@@ -2,6 +2,7 @@
           <%= form_for(current_survey) do |survey_form| %>
           <div class="row">
             <div class="large-12 columns">
+                 <%= survey_form.label :title, "Current survey title" %>
               <div class="row collapse">
                 <div class="small-10 columns">
                   <%= survey_form.text_field :title %>
@@ -14,7 +15,7 @@
             </div>
           <% end %>
           <%= link_to "Make new survey", root_url, class: "button" %>
-          <%= link_to "Activate survey", '#',
+          <%# link_to "Activate survey", '#',
                       method: :create, class: "button disabled" %>
           </div>
 
@@ -24,19 +25,7 @@
           <div class="panel">
             <ul>
               <li>
-                <%= question.content %> 
-                [<%= link_to "Edit Question", survey_survey_item_path(current_survey, question) %>]
-                [<%= link_to "Delete Question", survey_question_path(current_survey, question), 
-                                      method: :delete,
-                                        data: {confirm: "Are you sure?"}%>]
-                <%= link_to "Activate Question", question_vote_items_path(question.id), 
-                                                  method: :create, 
-                                                  class: "button" %>
-                <%= link_to "Deactivate Question", question_vote_item_path(question.id, 1), 
-                                                  method: :delete,
-                                                  data: {confirm: "Are you sure?"},
-                                                  class: "button" %>
-                
+                <%= question.content %>
                 <% if question.answers.any? %>
                   <ul>
                   <% @answers = question.answers %>
@@ -45,6 +34,21 @@
                   </ul>
                 <% end %>
               </li>
+            </ul>
+            <ul class="button-group radius">
+              <li><%= link_to "Edit Question", survey_survey_item_path(current_survey, question),
+                                                class: "button tiny" %></li>
+              <li><%= link_to "Delete Question", survey_question_path(current_survey, question), 
+                                                  method: :delete,
+                                                  data: {confirm: "Are you sure?"},
+                                                  class: "button tiny" %></li>
+              <li><%= link_to "Activate Question", question_vote_items_path(question.id), 
+                                            method: :create,
+                                            class: "button tiny success" %></li>
+              <li><%= link_to "Deactivate Question", question_vote_item_path(question.id, 1), 
+                                            method: :delete,
+                                            data: {confirm: "Are you sure?"},
+                                            class: "button tiny" %></li>
             </ul>
           </div>
           <% end %>

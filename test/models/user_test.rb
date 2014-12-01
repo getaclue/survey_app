@@ -1,18 +1,22 @@
 require 'test_helper'
 
-############################################
-# These tests were taken from the tutorials
-# as described by www.railstutorial.org/book
-# Most were slightly modified to conform to our
-# app.
-############################################
+  ############################################
+  # These tests were taken from the tutorials
+  # as described by www.railstutorial.org/book
+  # Most were modified to conform to our
+  # app.
+  ############################################
 
 class UserTest < ActiveSupport::TestCase
   
-  #Create a default dummy user
+  # Create a default dummy user
   def setup
-    @user = User.new(name: "Test User", email: "test@email.com", age: "55", sex: "0",
-                    password: "test", password_confirmation: "test")
+    @user = User.new(name: "Test User", 
+                    email: "test@email.com", 
+                      age: "55", 
+                      sex: "0", 
+                 password: "test", 
+    password_confirmation: "test")
   end
   
   test "should be valid" do

@@ -1,7 +1,14 @@
 <%# if user is the admin then see the page below %>
-    <% if current_user?(@survey_owner) %>
-      <%= render 'shared/survey_main_admin' %>
-    <% else %>
+<% if current_user?(@survey_owner) %>
+  <%= render 'shared/survey_main_admin' %>
+<% else %>
 <%# otherwise, show a page with voting options checkboxes %>
-      <%= render 'surveys/survey_voting_form' %>
-    <% end %>
+  <% if @questions_for_voting.any? %>
+    <%= render 'surveys/survey_voting_form', collection: @questions_for_voting %>
+  <% else %>
+    <div class="panel callout">
+        <h3>Sorry, this survey is not currently active.</h3>
+        <h3>Please contact <%= link_to @survey_owner.name, user_path(@survey_owner) %> for more details.</h3>
+    </div>
+  <% end %>
+<% end %>

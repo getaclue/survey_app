@@ -1,8 +1,11 @@
-<% if @user.errors.any? %>
+<% if object.errors.any? %>
   <div class="panel callout radius">
-    <div class="alert-box">We've encountered some errors:</div>
+    <div data-alert class="alert-box alert">
+      We've encountered some errors:
+      <a href="#" class="close">&times;</a>
+    </div>
     <ul class="circle">
-      <% @user.errors.full_messages.each do |message| %>
+      <% object.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
     </ul>

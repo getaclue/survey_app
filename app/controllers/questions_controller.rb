@@ -26,6 +26,9 @@ class QuestionsController < ApplicationController
     if current_survey.questions << question
       flash[:success] = "Added a new question"
       redirect_to survey_survey_item_path(current_survey, question)
+    else
+      flash[:alert] = "Question cannot be blank."
+      redirect_to survey_path(current_survey)
     end
   end
   

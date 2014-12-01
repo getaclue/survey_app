@@ -1,31 +1,34 @@
 class AnswersController < ApplicationController
   before_action :parent_question
   
-  # dont forget about the survey_id cookie!!
-  # remove it before final version
-  
   # create a new answer (SurveyItem)
   # need survey_id
   # need question_id
   def create
     # make an answer SurveyItem only
-    
+
     # case 1: No answers present
     # does the question have any answers?
     if !parent_answers?
-      new_answer = parent_question.answers.create(create_new_survey_item_parameters)
-      new_answer.update_attributes(survey_id: current_survey.id)
-      flash[:success] = "Added a new question"
-      redirect_to question_path(parent_question)
+      new_answer = SurveyItem.new(create_new_survey_item_parameters)
+      new_answer.update_attributes(survey_id: current_survey.id,
+                                   question_id: parent_question.id)
+      if new_answer.save
+        flash[:success] = "Added a new answer"
+      else
+        flash[:alert] = "Answer cannot be blank"
+      end
     else
       # case 2: answers present
       new_answer = SurveyItem.new(create_new_survey_item_parameters)
       new_answer.update_attributes(survey_id: current_survey.id)
       if parent_question.answers << new_answer
-        flash[:success] = "Added a new question"
-        redirect_to question_path(parent_question)
+        flash[:success] = "Added a new answer"
+      else
+        flash[:alert] = "Answer cannot be blank"
       end
     end
+    redirect_to question_path(parent_question)
   end
   
   # update a given answer
@@ -60,5 +63,5 @@ class AnswersController < ApplicationController
     def parent_answers?
       parent_question.answers.any?
     end
-      
+  
 end

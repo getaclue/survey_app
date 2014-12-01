@@ -41,6 +41,7 @@ class SurveysController < ApplicationController
       # Find all of the created SurveyItems associated with the survey
       #################################################################
       @questions = current_survey.questions.where("question = ?", true)
+      @questions_for_voting = current_survey.questions.where("question = ? AND active = ?", true, true)
       #################################################################
       # Create a temp SurveyItem so that a user can add a new question
       # Only if current user is the survey owner
@@ -87,7 +88,7 @@ class SurveysController < ApplicationController
       # Something went wrong
       # Redirect to root
       #################################################################
-      render root_url
+      render "pages/index"
     end
   end
   

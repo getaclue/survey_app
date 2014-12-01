@@ -11,5 +11,5 @@ class Survey < ActiveRecord::Base
   
   # validates presence of user_id and title
   validates :user_id, presence: true
-  # validates :title, presence: true
+  validates :title, presence: true
 end
