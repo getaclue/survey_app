@@ -1,4 +1,9 @@
 class User < ActiveRecord::Base
+  ############################################
+  # Followed some parts of the book from 
+  # www.railstutorial.org/book
+  ############################################
+  
   # ensure email is lower cased
   before_save { self.email = email.downcase }
   

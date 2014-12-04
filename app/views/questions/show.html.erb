@@ -1,4 +1,4 @@
-    <h3><%= link_to current_survey.title, current_survey %></h3>
+    <h3 class="text-center">Return to <%= link_to current_survey.title, current_survey %></h3>
     <%= form_for(@question, url: survey_question_path(current_survey, @question)) do |question_form| %>
     <div class="row">
       <div class="large-12 columns">
@@ -7,7 +7,7 @@
             <%= question_form.text_field :content %>
           </div>
           <div class="small-2 columns">
-            <%= question_form.submit "Edit Question", class: "button postfix" %>
+            <%= question_form.submit "Edit Question", class: "button alert postfix" %>
           </div>
         </div>
       </div>

@@ -1,4 +1,9 @@
 class UsersController < ApplicationController
+  ############################################
+  # Followed some parts of the book from 
+  # www.railstutorial.org/book
+  ############################################
+  
   # ensure that user is signed in before edit and update actions
   before_action :signed_in_user, only: [:edit, :update, :index, :destroy]
   # ensure that user sending the request is the signed in user

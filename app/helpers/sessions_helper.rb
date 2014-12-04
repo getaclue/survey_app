@@ -1,5 +1,10 @@
 module SessionsHelper
   
+  ############################################
+  # Followed some parts of the book from 
+  # www.railstutorial.org/book
+  ############################################
+  
   ##########################################
   # Start Dealing with users
   ##########################################

@@ -3,10 +3,10 @@
     <% @surveys.each do |survey| %>
       <li>
           <%# if the user is the correct user, allow them to see the link %>
-          <%= link_to survey.title, survey %> 
-          [<%= link_to "Delete Survey", survey_path(survey), 
+          <%= link_to survey.title, survey %>
+          (<%= link_to "Delete Survey", survey_path(survey), 
                                       method: :delete,
-                                        data: {confirm: "Are you sure?"} %>]
+                                        data: {confirm: "Are you sure?"} %>)
       </li>
     <% end %>
 </ol>

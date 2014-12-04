@@ -8,7 +8,7 @@
                   <%= survey_form.text_field :title %>
                 </div>
                 <div class="small-2 columns">
-                  <%= survey_form.submit "Edit Survey Title", class: "button postfix" %>
+                  <%= survey_form.submit "Edit Survey Title", class: "button alert postfix" %>
                 </div>
               </div>
             </div>
@@ -42,13 +42,16 @@
                                                   method: :delete,
                                                   data: {confirm: "Are you sure?"},
                                                   class: "button tiny" %></li>
-              <li><%= link_to "Activate Question", question_vote_items_path(question.id), 
-                                            method: :create,
-                                            class: "button tiny success" %></li>
-              <li><%= link_to "Deactivate Question", question_vote_item_path(question.id, 1), 
-                                            method: :delete,
-                                            data: {confirm: "Are you sure?"},
-                                            class: "button tiny" %></li>
+              <% if !question.active? %>
+                <li><%= link_to "Activate Question", question_vote_items_path(question.id), 
+                                              method: :create,
+                                              class: "button tiny success" %></li>
+              <% else %>
+                <li><%= link_to "Deactivate Question", question_vote_item_path(question.id, 1), 
+                                              method: :delete,
+                                              data: {confirm: "Are you sure?"},
+                                              class: "button alert tiny" %></li>
+              <% end %>
             </ul>
           </div>
           <% end %>
