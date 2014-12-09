@@ -1,28 +1,20 @@
-== README
+== Survey App (As submitted - Assignment 7 - SEG2105 - December, 2014)
+Preview[https://getaclue-evtbckwl.herokuapp.com/]
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Initial proposal: "A web application that will fulfil organization (ex: university classroom) attendance through a survey system."
 
-Things you may want to cover:
+In the original proposal, we had a specific product (a survey application) with a specific goal (classroom attendance). We believe that the original scope of design was too narrow. Therefore, our deviation in the final project was not trivial. We decided to create a generic application that can be adapted to suit our specific needs. By following a more global design, we have a stable project that can be tailored to various clients.
 
-* Ruby version
+We closely followed the proposed requirements, use cases, and the UML diagram. We did add numerous use cases and changed a few attributes in the UML diagram.
 
-* System dependencies
+== Development
+Neither of the team members had any previous experience developing web applications, using Ruby, Ruby on Rails, or using a database. Moreover, we had no experience with any version control systems.
 
-* Configuration
+The app was modelled using the <b>read-only interface pattern</b>. We had two types of users: a <i>super-user</i> and a <i>regular user</i>. A <i>super-user</i> is any user that can create, modify, and delete any part of a survey; whereas, a <i>regular user</i> is any user that can only participate in a survey. Therefore, a regular user gets to view only the read-only survey.
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+== Core Dependencies
+* gem 'rails' (4.1.5) - however, the gem file lists 4.2.0.beta4 as the project began following a tutorial
+* gem 'bcrypt' (3.1.7) - for user Auth
+* gem 'foundation-rails' (5.4.5.0) - for layout design
+* a databse - sqlite3 in development || pg in production
+* a web-server - unicorn
